@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      width: 400px;
+      min-height: 500px;
+      margin: 0;
+      padding: 15px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+    }
+    
+    .container {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      font-size: 18px;
+      margin: 0 0 15px 0;
+      color: #333;
+    }
+    
+    .status {
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    
+    .status.info {
+      background: #e3f2fd;
+      color: #1976d2;
+    }
+    
+    .status.success {
+      background: #e8f5e9;
+      color: #388e3c;
+    }
+    
+    .status.error {
+      background: #ffebee;
+      color: #c62828;
+    }
+    
+    button {
+      width: 100%;
+      padding: 12px;
+      margin: 5px 0;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    .btn-primary {
+      background: #1976d2;
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: #1565c0;
+    }
+    
+    .btn-secondary {
+      background: #757575;
+      color: white;
+    }
+    
+    .btn-secondary:hover {
+      background: #616161;
+    }
+    
+    .content-preview {
+      margin: 15px 0;
+      padding: 15px;
+      background: #f5f5f5;
+      border-radius: 4px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    
+    .content-preview h3 {
+      font-size: 14px;
+      margin: 0 0 10px 0;
+      color: #666;
+    }
+    
+    .content-preview p {
+      font-size: 12px;
+      line-height: 1.6;
+      color: #333;
+      margin: 0;
+      word-break: break-word;
+    }
+    
+    .info-item {
+      font-size: 12px;
+      color: #666;
+      margin: 5px 0;
+    }
+    
+    .info-item strong {
+      color: #333;
+    }
+    
+    #loading {
+      display: none;
+      text-align: center;
+      padding: 20px;
+    }
+    
+    .spinner {
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #1976d2;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>飞书内容提取器</h1>
+    
+    <div id="status" class="status info">
+      准备就绪，点击提取按钮开始
+    </div>
+    
+    <button id="extractBtn" class="btn-primary">提取当前页面内容</button>
+    <button id="copyBtn" class="btn-secondary" style="display: none;">复制内容到剪贴板</button>
+    <button id="downloadBtn" class="btn-secondary" style="display: none;">下载为文本文件</button>
+    
+    <div id="loading" style="display: none;">
+      <div class="spinner"></div>
+      <p>正在提取内容...</p>
+    </div>
+    
+    <div id="contentInfo" style="display: none;">
+      <div class="info-item">
+        <strong>标题:</strong> <span id="titleText"></span>
+      </div>
+      <div class="info-item">
+        <strong>字数:</strong> <span id="wordCount"></span>
+      </div>
+      <div class="info-item">
+        <strong>图片数:</strong> <span id="imageCount"></span>
+      </div>
+    </div>
+    
+    <div id="preview" class="content-preview" style="display: none;">
+      <h3>内容预览</h3>
+      <p id="previewText"></p>
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
